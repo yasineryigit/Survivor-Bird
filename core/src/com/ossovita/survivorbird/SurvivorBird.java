@@ -165,41 +165,32 @@ public class SurvivorBird extends ApplicationAdapter {
 			font2.draw(batch,"Game Over! Tap to play again",Gdx.graphics.getWidth()/5,Gdx.graphics.getHeight()/3);
 			font.draw(batch,String.valueOf(score),100,200);
 
-			if(Gdx.input.justTouched()){ //tekrar ekrana tıklayarak başlatabiliriz
-				gameState=1;
-				//tekrar oynamak isterse kuşu default konumuna getirdik
-				birdY=Gdx.graphics.getHeight()/3;
+			if (Gdx.input.justTouched()) {
+				gameState = 1;
 
-				//yukardan getirdik yapıştırdık
-				for(int i=0;i<numberOfEnemies;i++){
-
-					if(enemyX[i]< -Gdx.graphics.getWidth()/15){
-						enemyX[i]=enemyX[i]	+ (numberOfEnemies* distance);
-
-						enemyOffSet[i]=(r.nextFloat()-0.5f)*(Gdx.graphics.getHeight()-200);
-						enemyOffSet2[i]=(r.nextFloat()-0.5f)*(Gdx.graphics.getHeight()-200);
-						enemyOffSet3[i]=(r.nextFloat()-0.5f)*(Gdx.graphics.getHeight()-200);
-
-					}else{
-						enemyX[i]=enemyX[i]-enemyHizi;
-					}
-
-					//arıları göster
-					batch.draw(bee1,enemyX[i],Gdx.graphics.getHeight()/2+enemyOffSet[i],Gdx.graphics.getWidth()/15,Gdx.graphics.getHeight()/10);
-					batch.draw(bee2,enemyX[i],Gdx.graphics.getHeight()/2+enemyOffSet2[i],Gdx.graphics.getWidth()/15,Gdx.graphics.getHeight()/10);
-					batch.draw(bee3,enemyX[i],Gdx.graphics.getHeight()/2+enemyOffSet3[i],Gdx.graphics.getWidth()/15,Gdx.graphics.getHeight()/10);
-
-					enemyCircles[i] = new Circle(enemyX[i]+Gdx.graphics.getWidth()/30,Gdx.graphics.getHeight()/2+enemyOffSet[i]+Gdx.graphics.getHeight()/20,Gdx.graphics.getWidth()/30);
-					enemyCircles2[i] = new Circle(enemyX[i]+Gdx.graphics.getWidth()/30,Gdx.graphics.getHeight()/2+enemyOffSet2[i]+Gdx.graphics.getHeight()/20,Gdx.graphics.getWidth()/30);
-					enemyCircles3[i] = new Circle(enemyX[i]+Gdx.graphics.getWidth()/30,Gdx.graphics.getHeight()/2+enemyOffSet3[i]+Gdx.graphics.getHeight()/20,Gdx.graphics.getWidth()/30);
+				birdY = Gdx.graphics.getHeight() / 3;
 
 
+				for (int i = 0; i<numberOfEnemies; i++) {
+
+
+					enemyOffSet[i] = (r.nextFloat() - 0.5f) * (Gdx.graphics.getHeight() - 200);
+					enemyOffSet2[i] = (r.nextFloat() - 0.5f) * (Gdx.graphics.getHeight() - 200);
+					enemyOffSet3[i] = (r.nextFloat() - 0.5f) * (Gdx.graphics.getHeight() - 200);
+
+					enemyX[i] = Gdx.graphics.getWidth() - bee1.getWidth() / 2 + i * distance;
+
+
+					enemyCircles[i] = new Circle();
+					enemyCircles2[i] = new Circle();
+					enemyCircles3[i] = new Circle();
 
 				}
-				//mevcut hızını sıfırla
-				hiz=0;
-				scoredEnemy=0;
-				score=0;
+
+				hiz = 0;
+				scoredEnemy = 0;
+				score = 0;
+
 			}
 
 		}
